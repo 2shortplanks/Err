@@ -21,8 +21,8 @@ sub _class_from_code {
     my $code = shift;
     return "Exception::Class::Base" unless length $code;
     return "Err::Exception" if $code eq ".";
-    $code =~ s/\A\./Err::Exception::/;
-    $code =~ s/[.']/::/g;
+    $code =~ s/\A\./Err::Exception::/x;
+    $code =~ s/[.']/::/gx;
     return $code;
 }
 
@@ -42,7 +42,7 @@ push @EXPORT_OK, "ex_is_err";
 
 ########################################################################
 
-sub throw_err($$@) {
+sub throw_err($$@) {  ## no critic (RequireFinalReturn)
     my $err_class = _class_from_code(shift);
     my $message = shift;
 
@@ -69,7 +69,7 @@ sub declare_err($%) {
         # attempt to strip off the last ::whatever, but if we can't
         # (presumably because the class name only had one part) just
         # default to Err::Exception
-        unless($parent =~ s/::[^:]+\z//) {
+        unless($parent =~ s/::[^:]+\z//x) {
             $parent = "Err::Exception";
         }
     }
@@ -85,7 +85,7 @@ sub declare_err($%) {
       $err_class => {
         isa => $parent,
         (defined $description ? (description => $description) : ()),
-        fields => [keys $defaults{ $err_class }], 
+        fields => [keys $defaults{ $err_class }],
       }
     );
 
@@ -254,6 +254,8 @@ TryCatch, etc.
 =head2 Functions
 
 These module exports functions on demand, or you can call them fully qualified.
+
+=over
 
 =item declare_err EXCEPTION_CODE, @optinal_args
 
