@@ -10,7 +10,7 @@ use Scalar::Util qw(blessed);
 # load Exception::Class and declare the Err::Exception baseclass
 use Exception::Class ("Err::Exception");
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 our @EXPORT_OK;
 
 my %defaults;  # default arguments

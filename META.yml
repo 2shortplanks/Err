@@ -28,4 +28,4 @@ resources:
     type: git
     url: git://github.com/2shortplanks/Err
     web: https://github.com/2shortplanks/Err
-version: 0.01
+version: 0.02
