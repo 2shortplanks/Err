@@ -22,5 +22,10 @@ no_index:
 requires:
   Exception::Class: 0
 resources:
+  homepage: https://github.com/2shortplanks/Err
   license: http://dev.perl.org/licenses/
+  repository:
+    type: git
+    url: git://github.com/2shortplanks/Err
+    web: https://github.com/2shortplanks/Err
 version: 0.01
