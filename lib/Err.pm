@@ -85,7 +85,7 @@ sub declare_err($%) {
       $err_class => {
         isa => $parent,
         (defined $description ? (description => $description) : ()),
-        fields => [keys $defaults{ $err_class }],
+        fields => [keys %{ $defaults{ $err_class } }],
       }
     );
 
